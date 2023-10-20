@@ -1,0 +1,23 @@
+pipeline {
+    agent any
+    environment {
+    PATH = "/opt/apache-maven-3.9.5/bin:$PATH"
+    }
+    stages {
+        stage("clone code") {
+            steps {
+                git "https://github.com/Neethanm123/maven-nxt.git"
+            }
+        }
+        stage ("build code"){
+            steps {
+           sh "mvn clean install"
+            }
+          }
+        stage ("s3_upload"){
+            steps {
+                sh "aws s3 cp /var/lib/jenkins/workspace/mavenpipeline s3://s3bucketneeta/ --recursive"
+            }
+        }
+    }
+}
