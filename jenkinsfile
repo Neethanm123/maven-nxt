@@ -22,8 +22,6 @@ pipeline {
             steps {
             sshagent(['deploy_user']) {
               sh "scp -o stricthostkeychecking=no webapp/target.war ec2-user@54.234.141.74:/opt/apache-tomcat-9.0.82/webapps
-               }
-             }
         }
     }
 }
