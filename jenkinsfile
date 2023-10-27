@@ -18,6 +18,7 @@ pipeline {
             steps {
                 sh "aws s3 cp /var/lib/jenkins/workspace/mavenpipeline s3://s3bucketneeta/ --recursive"
             }
+          }
         stage ("DEV_deploy"){
             steps {
             sshagent(['deploy_user']) {
